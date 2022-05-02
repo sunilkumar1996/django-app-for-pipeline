@@ -4,13 +4,13 @@ phases:
   pre_build:
     commands:
       - echo "Before running tests"
-      - yum install -y gcc-c++
-      - yum install -y mysql-devel
+      - pip install --upgrade pip
+      - echo "pip upgraded!"
       - pip install -r requirements.txt
   build:
     commands:
       - echo "Starting Migrations"
-      - python manage.py migrate
+      - python manage.py migrate --noinput
       - echo "Starting Server"
       - python manage.py runserver > /dev/null 2>&1 &
   post_build:
